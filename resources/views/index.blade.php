@@ -14,7 +14,9 @@
             <th>Penulis</th>
             <th>Harga</th>
             <th>Tgl. Terbit</th>
+            @if(Auth::check() && Auth::user() -> level == 'admin')
             <th colspan="2">Aksi</th></tr>
+            @endif
     </thead>
     <tbody>
         @foreach($data_buku as $buku)
@@ -24,6 +26,7 @@
                 <td>{{ $buku->penulis }}</td>
                 <td>{{ "Rp ".number_format($buku->harga, 2, ',', '.') }}</td>
                 <td>{{ \Carbon\Carbon::parse($buku->tgl_terbit)->format('d/m/Y') }}</td>
+                @if(Auth::check() && Auth::user() -> level == 'admin')
                 <td>
                     <form action="{{ route('buku.destroy', $buku->id) }}" method="post">
                         @csrf 
@@ -35,6 +38,7 @@
                         <button>Edit</button>
                     </form>
                 </td>
+                @endif
             </tr>
         @endforeach
     </tbody>
