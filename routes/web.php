@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/buku/update/{id}', [BukuController::class, 'update'])->name('buku.update');
     
         Route::get('/buku/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
+
+        Route::get('/buku/delete-gallery/{id}', [BukuController::class, 'hapusGambarGallery'])->name('hapusGambarGallery');
     });
 
 
