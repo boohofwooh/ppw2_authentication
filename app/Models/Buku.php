@@ -12,12 +12,17 @@ class Buku extends Model
     use HasFactory;
 
     protected $table = 'buku';
-    protected $fillable = ['id', 'judul', 'penulis', 'harga', 'tgl_terbit', 'created_at', 'updated_at', 'filename', 'filepath'];
+    protected $fillable = ['id', 'judul', 'penulis', 'harga', 'tgl_terbit', 'created_at', 'updated_at', 'filename', 'filepath', 'buku_seo', 'foto'];
 
     protected $dates = ['tgl_terbit'];
 
     public function galleries(): HasMany
     {
         return $this->hasMany(Gallery::class);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany('App\Buku', 'id_buku', 'id');
     }
 }

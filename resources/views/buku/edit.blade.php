@@ -49,7 +49,8 @@
             alt=""
             width="400"
             />
-            <a class="btn btn-danger" href="{{ route('hapusGambarGallery', ['id' => $gallery->id]) }}" onclick="hapusGallery()">Hapus</a>
+            <a class="btn btn-danger" href="{{ route('hapusGambarGallery',
+                 ['id' => $gallery->id]) }}" onclick="hapusGallery()">Hapus</a>
         </div>
         @endforeach
     </div>

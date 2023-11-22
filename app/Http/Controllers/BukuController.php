@@ -66,8 +66,7 @@ class BukuController extends Controller
                 'filepath' => '/storage/' . $filePath        
             ]);
         }
-        
-       
+
 
         if ($request->file('gallery')){
             foreach($request->file('gallery') as $key => $file){
@@ -192,5 +191,20 @@ class BukuController extends Controller
         $gallery->delete();
 
         return redirect()->back()->with('pesan', 'Gambar Galeri Berhasil Dihapus');
+    }
+
+    public function galbuku($id){
+        $buku = Buku::find($id);
+        return view('galeri-buku', compact('buku'));
+    }
+
+    public function listBuku()
+    {
+        $batas = 5;
+        $data_buku = Buku::orderBy('id', 'desc')->paginate($batas);
+        $no = $batas * ($data_buku->currentPage()-1);
+        $jumlah_buku = Buku::count('id');
+
+        return view('list-buku', compact('data_buku', 'no', 'jumlah_buku' ));
     }
 }
